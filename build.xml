@@ -1,0 +1,30 @@
+<project name="ChatApplication" basedir="." default="compile">
+
+    <!-- Task to create build directory -->
+    <target name="init">
+        <mkdir dir="build"/>
+    </target>
+
+    <!-- Task to compile all Java files in src/com/example/ -->
+    <target name="compile" depends="init">
+        <javac srcdir="src" destdir="build" includeantruntime="false">
+            <include name="com/example/**/*.java"/>
+        </javac>
+    </target>
+
+    <!-- Task to run the server -->
+    <target name="run-server" depends="compile">
+        <java classname="com.example.Server" classpath="build"/>
+    </target>
+
+    <!-- Task to run the client -->
+    <target name="run-client" depends="compile">
+        <java classname="com.example.Main" classpath="build"/>
+    </target>
+
+    <!-- Task to clean the build directory -->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+</project>
